@@ -1,6 +1,6 @@
 package Flood::Level;
 use v5.10;
-use Moose;
+use Moo;
 use Carp;
 
 use List::Util qw/product max min/;
@@ -83,7 +83,7 @@ sub flood {
 					unless grep { $_ == $maybe_add } @maybe_connected
 					# or if it wraps around
 					or $maybe_add < 0
-					or $maybe_add > @{$self->board};
+					or $maybe_add > @{$self->board} - 1;
 			}
 		}
 	}

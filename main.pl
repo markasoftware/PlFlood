@@ -12,7 +12,7 @@ $| = 1;
 
 my $level = Flood::Level->new(
 	dimensions => [ 8, 8 ],
-	colors => 5
+	colors => 6
 );
 $level->generate;
 
