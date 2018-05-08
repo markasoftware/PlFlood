@@ -1,6 +1,6 @@
 package Flood::Level;
 use v5.10;
-use Moo;
+use Moose;
 use Carp;
 
 use List::Util qw/product max min/;
@@ -95,25 +95,12 @@ sub flood {
 	$self->_set_corner_color($new_corner_color);
 }
 
-sub render_2d {
-	my $self = shift;
-
-	croak '2D render requested of level with different dimension count.'
-		unless @{$self->dimensions} == 2;
-	
-	my ($width, $height) = @{$self->dimensions};
-	# loop through rows
-	for (0..$height) {
-		say join ' ', @{$self->board}[$_ * $width..($_ + 1) * $width - 1];
-	}
-}
-
 sub complete {
 	my $self = shift;
 	return max( @{$self->board} ) == min( @{$self->board} );
 }
 
-sub generate {
+sub BUILD {
     my $self = shift;
     # seed
     if ($self->_has_seed) {

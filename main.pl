@@ -5,16 +5,13 @@ use strict;
 use warnings;
 
 use lib '.';
-use Flood::Play2D;
-use Flood::Level;
+use Flood::Playable2DLevel;
 
 $| = 1;
 
-my $level = Flood::Level->new(
+my $level = Flood::Playable2DLevel->new(
 	dimensions => [ 8, 8 ],
 	colors => 6
 );
-$level->generate;
 
-my $game = Flood::Play2D->new( level => $level );
-$game->until_complete;
+$level->play_until_complete;
